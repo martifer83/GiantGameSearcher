@@ -12,8 +12,10 @@ import rx.Observable;
 public class GiantService {
 
     //private static final String FORUM_SERVER_URL = "http://jsonplaceholder.typicode.com";
-     private static final String GIANT_URL = "http://www.giantbomb.com/api";   //// <string name="giantbomb_api_key">22ecf43dc573a2e400cd5c2e334fbcba6edb8a51</string>
+     private static final String GIANT_URL = "https://www.giantbomb.com/api";   //// <string name="giantbomb_api_key">22ecf43dc573a2e400cd5c2e334fbcba6edb8a51</string>
    ///  http://www.giantbomb.com/api/games/?api_key=b1f2d14f1beaca51ed8288a5ca1faaf97753fcfa&format=json&filter=name:Fallout
+
+    //  https://www.giantbomb.com/api/games/?api_key=b1f2d14f1beaca51ed8288a5ca1faaf97753fcfa&format=json&filter=name:Wolfenstein
     private GiantApi mGiantApi;
 
     public GiantService() {
