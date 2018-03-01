@@ -27,6 +27,13 @@ public class DetailActivity extends ActionBarActivity {
     @InjectView(R.id.textViewBody)
     TextView mTextViewBody;
 
+    @InjectView(R.id.textViewCompany)
+    TextView mTextViewCompany;
+
+    @InjectView(R.id.textViewReleaseDate)
+    TextView mTextViewReleaseDate;
+
+
     @InjectView(R.id.listViewComments)
     ListView mListViewComments;
 
@@ -35,7 +42,7 @@ public class DetailActivity extends ActionBarActivity {
     DetailsPresenter mDetailsPresenter;
     GiantService mGiantService;
 
-    protected int mPostId;
+    protected int mGameId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +51,7 @@ public class DetailActivity extends ActionBarActivity {
 
         ButterKnife.inject(this);
 
-        mPostId = getIntent().getIntExtra("postId", 0);
+        mGameId = getIntent().getIntExtra("gameId", 0);
 
         //ArrayList<Comment> dummyComments = new ArrayList<Comment>();
         //mCommentsAdapter = new CommentsAdapter(this, dummyComments);
@@ -52,13 +59,12 @@ public class DetailActivity extends ActionBarActivity {
 
         mGiantService = new GiantService();
         mDetailsPresenter = new DetailsPresenter(this, mGiantService);
-        //mDetailsPresenter.loadComments();
-        //mDetailsPresenter.loadGame();
+        mDetailsPresenter.loadGame();
     }
 
-    public int getPostId() {
+    public int getGameId() {
 
-        return mPostId;
+        return mGameId;
     }
 
     /*public void displayComments(List<Comment> comments) {
@@ -70,8 +76,15 @@ public class DetailActivity extends ActionBarActivity {
 
     public void displayGame(Game game) {
 
-        //mTextViewTitle.setText(game.title);
-        //mTextViewBody.setText(post.body);
+
+        //mGamesAdapter.clear();
+        //mGamesAdapter.addAll(list.results);
+        //mGamesAdapter.notifyDataSetInvalidated();
+
+        mTextViewTitle.setText(game.name);
+        mTextViewBody.setText(game.id);
+        mTextViewCompany.setText(game.company);
+        mTextViewReleaseDate.setText(game.releaseDate);
     }
 
     @Override

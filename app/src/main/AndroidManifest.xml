@@ -20,8 +20,8 @@
             </intent-filter>
         </activity>
 
-        <!--activity
-            android:name="marti.com.prova.giantgamesearcher.views.DetailActivity" /-->
+        <activity
+            android:name="marti.com.prova.giantgamesearcher.views.DetailActivity" />
 
     </application>
 

@@ -24,10 +24,10 @@ public class ListPresenter {
         mGiant = giantService;
     }
 
-    public void loadGames() {
+    public void loadGames(String name) {
 
         mGiant.getApi()
-                .getGames()
+                .getGames(name)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<GiantList>() {

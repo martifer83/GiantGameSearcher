@@ -27,7 +27,7 @@ public class DetailsPresenter {
     public void loadGame() {
 
         mGiantService.getApi()
-                .getGameDetail(mView.getPostId())
+                .getGameDetail(mView.getGameId())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Game>() {
@@ -43,8 +43,7 @@ public class DetailsPresenter {
 
                     @Override
                     public void onNext(Game game) {
-
-                       // mView.displayPost(post);
+                       mView.displayGame(game);
                     }
                 });
     }

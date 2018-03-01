@@ -12,6 +12,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/color_black"
+        android:text="title"
         />
 
     <TextView
@@ -20,7 +21,26 @@
         android:paddingBottom="10dp"
         android:textSize="20sp"
         android:id="@+id/textViewBody"
-        android:textColor="@color/color_black"/>
+        android:textColor="@color/color_black"
+        android:text="body"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:textSize="20sp"
+        android:id="@+id/textViewCompany"
+        android:textColor="@color/color_black"
+        android:text="company"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:textSize="20sp"
+        android:id="@+id/textViewReleaseDate"
+        android:textColor="@color/color_black"
+        android:text="release"/>
 
     <ListView
         android:layout_width="match_parent"

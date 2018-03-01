@@ -4,6 +4,7 @@ import marti.com.prova.giantgamesearcher.models.Game;
 import marti.com.prova.giantgamesearcher.models.GiantList;
 import retrofit.RestAdapter;
 import retrofit.http.GET;
+import retrofit.http.Path;
 import rx.Observable;
 
 /**
@@ -20,6 +21,7 @@ public class GiantService {
 
     public GiantService() {
 
+        //https://hackernoon.com/yet-another-mvp-article-part-3-calling-apis-using-retrofit-23757f4eee05
 
         /*RequestInterceptor requestInterceptor = new RequestInterceptor() {
             @Override
@@ -54,15 +56,34 @@ public class GiantService {
 
     // another example: https://github.com/JakeWharton/retrofit2-rxjava2-adapter/tree/master/src
 
+    // example http://randomdotnext.com/retrofit-rxjava/
+
+
+    /*
+    public interface GithubService {
+    String SERVICE_ENDPOINT = "https://api.github.com";
+
+    @GET("/users/{login}")
+    Observable<Github> getUser(@Path("login") String login);
+     }
+
+     */
+
     public interface GiantApi {
 //  .setEndpoint("http://www.giantbomb.com/api/")   // <string name="giantbomb_api_key">22ecf43dc573a2e400cd5c2e334fbcba6edb8a51</string>
-        @GET("/games/?api_key=b1f2d14f1beaca51ed8288a5ca1faaf97753fcfa&format=json&filter=name:Fallout")
+        //@GET("/games/?api_key=b1f2d14f1beaca51ed8288a5ca1faaf97753fcfa&format=json&filter=name:Fallout")
         //<GiantGames> getGames();
-         Observable<GiantList> getGames();
+         //Observable<GiantList> getGames();
+
+        @GET("/games/?api_key=b1f2d14f1beaca51ed8288a5ca1faaf97753fcfa&format=json&filter")
+        Observable<GiantList> getGames(@Path("name") String name); //@Path("id") String questionId
+
+
+        // try this: https://stackoverflow.com/questions/43434073/unable-to-create-call-adapter-for-io-reactivex-observable
+
 
         // exemple 2.0
         //@GET("/service/getIpInfo.php") Observable<JsonObject> getIPInfo(@Query("ip") String ip);
-
 
         //Call Observable<List<Game>> getTasks(@Query("sort") String order);
 
@@ -72,8 +93,6 @@ public class GiantService {
         @GET("games/?api_key=b1f2d14f1beaca51ed8288a5ca1faaf97753fcfa&format=json&filter=name:Fallout")
         //Call<GiantGames> loadGames(@Query("tagged") String tags);
          Observable<Game> getGameDetail(int id);
-
-
 
         // shown only as example
        /*
@@ -100,5 +119,18 @@ public interface GiantAPI {
     @retrofit2.http.GET("/2.2/questions?order=desc&sort=creation&site=stackoverflow")
     //Call<GiantGames> loadGames(@Query("tagged") String tags);
     public android.database.Observable<GiantGames> loadGames();
+
+
+///
+
+String BASE_URL = "https://api.stackexchange.com";
+
+    @GET("/2.2/questions?order=desc&sort=votes&site=stackoverflow&tagged=android&filter=withbody")
+    Call<ListWrapper<Question>> getQuestions();
+
+    @GET("/2.2/questions/{id}/answers?order=desc&sort=votes&site=stackoverflow")
+    Call<ListWrapper<Answer>> getAnswersForQuestion(@Path("id") String questionId);
+
+
 
 */

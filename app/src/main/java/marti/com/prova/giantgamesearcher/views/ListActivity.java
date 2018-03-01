@@ -26,7 +26,7 @@ import marti.com.prova.giantgamesearcher.services.GiantService;
 
 public class ListActivity extends AppCompatActivity {
 
-    @InjectView(R.id.listViewPosts)
+    @InjectView(R.id.listViewGames)
     ListView mListViewPosts;
 
     GamesAdapter mGamesAdapter;
@@ -47,18 +47,18 @@ public class ListActivity extends AppCompatActivity {
 
         mGiantService = new GiantService();
         mListPresenter = new ListPresenter(this, mGiantService);
-        mListPresenter.loadGames();
+        mListPresenter.loadGames("name:Fallout");
 
     }
 
-    @OnItemClick(R.id.listViewPosts)
+    @OnItemClick(R.id.listViewGames)
     public void onPostSelect(int position) {
 
         Game g = mGamesAdapter.getItem(position);
         int gameId = g.id;
 
         Intent detailIntent = new Intent(this, DetailActivity.class);
-        detailIntent.putExtra("postId", gameId);
+        detailIntent.putExtra("gameId", gameId);
         startActivity(detailIntent);
     }
 
@@ -80,7 +80,7 @@ public class ListActivity extends AppCompatActivity {
 
         int id = item.getItemId();
 
-       /* if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
         }*/
 
