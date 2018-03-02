@@ -15,10 +15,13 @@ import rx.schedulers.Schedulers;
  */
 public class ListPresenter {
 
-    ListActivity mView;
+
+    // https://github.com/antoniolg/androidmvp/search?utf8=%E2%9C%93&q=MainView&type=
+    MyListView mView;
+    //ListActivity mView;
     GiantService mGiant;
 
-    public ListPresenter(ListActivity view, GiantService giantService) {
+    public ListPresenter(MyListView view, GiantService giantService) {
 
         mView = view;
         mGiant = giantService;

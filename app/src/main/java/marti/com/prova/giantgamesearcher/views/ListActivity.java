@@ -21,10 +21,11 @@ import marti.com.prova.giantgamesearcher.adapters.GamesAdapter;
 import marti.com.prova.giantgamesearcher.models.Game;
 import marti.com.prova.giantgamesearcher.models.GiantList;
 import marti.com.prova.giantgamesearcher.presenters.ListPresenter;
+import marti.com.prova.giantgamesearcher.presenters.MyListView;
 import marti.com.prova.giantgamesearcher.services.GiantService;
 
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity  implements MyListView{
 
     @InjectView(R.id.listViewGames)
     ListView mListViewPosts;
@@ -62,11 +63,22 @@ public class ListActivity extends AppCompatActivity {
         startActivity(detailIntent);
     }
 
+    @Override
+    public void showProgress() {
+        
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
     public void displayGames(GiantList list) {
 
         mGamesAdapter.clear();
         mGamesAdapter.addAll(list.results);
         mGamesAdapter.notifyDataSetInvalidated();
+
     }
 
     @Override
