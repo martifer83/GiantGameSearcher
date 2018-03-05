@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,9 @@ public class ListActivity extends AppCompatActivity  implements MyListView{
     @InjectView(R.id.listViewGames)
     ListView mListViewPosts;
 
+    @InjectView(R.id.progress)
+    ProgressBar progressBar;
+
     GamesAdapter mGamesAdapter;
 
     ListPresenter mListPresenter;
@@ -42,6 +47,8 @@ public class ListActivity extends AppCompatActivity  implements MyListView{
 
         ButterKnife.inject(this);
 
+        progressBar = (ProgressBar) findViewById(R.id.progress);
+
         ArrayList<Game> dummyPosts = new ArrayList<Game>();
         mGamesAdapter = new GamesAdapter(this, dummyPosts);
         mListViewPosts.setAdapter(mGamesAdapter);
@@ -49,7 +56,7 @@ public class ListActivity extends AppCompatActivity  implements MyListView{
         mGiantService = new GiantService();
         mListPresenter = new ListPresenter(this, mGiantService);
         mListPresenter.loadGames("name:Fallout");
-
+        showProgress();
     }
 
     @OnItemClick(R.id.listViewGames)
@@ -57,20 +64,26 @@ public class ListActivity extends AppCompatActivity  implements MyListView{
 
         Game g = mGamesAdapter.getItem(position);
         int gameId = g.id;
+        String company = g.company;
+        String releaseDate = g.releaseDate;
+        String name =  g.name;
 
         Intent detailIntent = new Intent(this, DetailActivity.class);
         detailIntent.putExtra("gameId", gameId);
+        detailIntent.putExtra("company", company);
+        detailIntent.putExtra("releaseDate", releaseDate);
+        detailIntent.putExtra("name", name);
         startActivity(detailIntent);
     }
 
     @Override
     public void showProgress() {
-        
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-
+        progressBar.setVisibility(View.GONE);
     }
 
     public void displayGames(GiantList list) {

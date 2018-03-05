@@ -5,6 +5,7 @@ import marti.com.prova.giantgamesearcher.models.GiantList;
 import retrofit.RestAdapter;
 import retrofit.http.GET;
 import retrofit.http.Path;
+import retrofit.http.Query;
 import rx.Observable;
 
 /**
@@ -72,16 +73,28 @@ public class GiantService {
     public interface GiantApi {
 //  .setEndpoint("http://www.giantbomb.com/api/")   // <string name="giantbomb_api_key">22ecf43dc573a2e400cd5c2e334fbcba6edb8a51</string>
         //@GET("/games/?api_key=b1f2d14f1beaca51ed8288a5ca1faaf97753fcfa&format=json&filter=name:Fallout")
+
+
         //<GiantGames> getGames();
          //Observable<GiantList> getGames();
 
-        @GET("/games/?api_key=b1f2d14f1beaca51ed8288a5ca1faaf97753fcfa&format=json&filter")
-        Observable<GiantList> getGames(@Path("name") String name); //@Path("id") String questionId
+        //@GET("/games/?api_key=b1f2d14f1beaca51ed8288a5ca1faaf97753fcfa&format=json&filter")
+        //Observable<GiantList> getGames(@Path("name") String name); //@Path("id") String questionId
 
+
+        @GET("/games/")
+        Observable<GiantList> getGames(@Query("api_key") String key,@Query("format") String format,@Query("filter") String filter);
 
         // try this: https://stackoverflow.com/questions/43434073/unable-to-create-call-adapter-for-io-reactivex-observable
 
+    /////http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo
 
+        /*@GET(“citiesJSON”)
+        Single<CityResponse> queryGeonames(@Query(“north”) double north, @Query(“south”) double south,
+                                           @Query(“east”) double east,
+                                           @Query(“west”) double west,
+                                           @Query(“lang”) String lang);
+        */
         // exemple 2.0
         //@GET("/service/getIpInfo.php") Observable<JsonObject> getIPInfo(@Query("ip") String ip);
 

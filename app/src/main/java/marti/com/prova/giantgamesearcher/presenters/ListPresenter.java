@@ -30,12 +30,13 @@ public class ListPresenter {
     public void loadGames(String name) {
 
         mGiant.getApi()
-                .getGames(name)
+                .getGames("b1f2d14f1beaca51ed8288a5ca1faaf97753fcfa","json",name)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<GiantList>() {
                     @Override
                     public void onCompleted() {
+                        mView.hideProgress();
                         Log.d("ListPresenter", "onCompleted");
                     }
 

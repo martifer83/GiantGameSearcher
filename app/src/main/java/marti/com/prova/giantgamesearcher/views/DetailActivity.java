@@ -43,6 +43,12 @@ public class DetailActivity extends ActionBarActivity {
     GiantService mGiantService;
 
     protected int mGameId;
+    String mName;
+    String mCompany;
+    String mReleaseDate;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +58,19 @@ public class DetailActivity extends ActionBarActivity {
         ButterKnife.inject(this);
 
         mGameId = getIntent().getIntExtra("gameId", 0);
-
+        mName = getIntent().getStringExtra("name");
+        mReleaseDate = getIntent().getStringExtra("releaseDate");
+        mCompany = getIntent().getStringExtra("company");
+        //mGa = getIntent().getIntExtra("", 0);
         //ArrayList<Comment> dummyComments = new ArrayList<Comment>();
         //mCommentsAdapter = new CommentsAdapter(this, dummyComments);
         //mListViewComments.setAdapter(mCommentsAdapter);
 
-        mGiantService = new GiantService();
+        displayGame(null);
+        // no es necesari cridar a load game ja passem els parametres de la primera query
+        /*mGiantService = new GiantService();
         mDetailsPresenter = new DetailsPresenter(this, mGiantService);
-        mDetailsPresenter.loadGame();
+        mDetailsPresenter.loadGame();*/
     }
 
     public int getGameId() {
@@ -68,7 +79,6 @@ public class DetailActivity extends ActionBarActivity {
     }
 
     /*public void displayComments(List<Comment> comments) {
-
         mCommentsAdapter.clear();
         mCommentsAdapter.addAll(comments);
         mCommentsAdapter.notifyDataSetInvalidated();
@@ -76,15 +86,10 @@ public class DetailActivity extends ActionBarActivity {
 
     public void displayGame(Game game) {
 
-
-        //mGamesAdapter.clear();
-        //mGamesAdapter.addAll(list.results);
-        //mGamesAdapter.notifyDataSetInvalidated();
-
-        mTextViewTitle.setText(game.name);
-        mTextViewBody.setText(game.id);
-        mTextViewCompany.setText(game.company);
-        mTextViewReleaseDate.setText(game.releaseDate);
+        mTextViewTitle.setText(mName);
+        mTextViewBody.setText(Integer.toString(mGameId));
+        mTextViewCompany.setText(mCompany);
+        mTextViewReleaseDate.setText(mReleaseDate);
     }
 
     @Override
