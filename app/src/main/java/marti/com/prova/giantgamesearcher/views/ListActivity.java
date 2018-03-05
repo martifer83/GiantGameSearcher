@@ -7,16 +7,22 @@ package marti.com.prova.giantgamesearcher.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import butterknife.OnItemClick;
 import marti.com.prova.giantgamesearcher.R;
 import marti.com.prova.giantgamesearcher.adapters.GamesAdapter;
@@ -34,6 +40,12 @@ public class ListActivity extends AppCompatActivity  implements MyListView{
 
     @InjectView(R.id.progress)
     ProgressBar progressBar;
+
+    @InjectView(R.id.et_search)
+    EditText etSearch;
+
+    @InjectView(R.id.button_search)
+    Button button_search;
 
     GamesAdapter mGamesAdapter;
 
@@ -55,8 +67,34 @@ public class ListActivity extends AppCompatActivity  implements MyListView{
 
         mGiantService = new GiantService();
         mListPresenter = new ListPresenter(this, mGiantService);
-        mListPresenter.loadGames("name:Fallout");
-        showProgress();
+        //mListPresenter.loadGames("name:Fallout");
+        //showProgress();
+
+
+        // Add Text Change Listener to EditText
+        etSearch.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+
+                int i;
+                i =0;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+               // mListPresenter.loadGames("name:"+text);
+                //showProgress();
+                int h;
+                h =0;
+            }
+        });
+
     }
 
     @OnItemClick(R.id.listViewGames)
@@ -75,6 +113,13 @@ public class ListActivity extends AppCompatActivity  implements MyListView{
         detailIntent.putExtra("name", name);
         startActivity(detailIntent);
     }
+
+    @OnClick(R.id.button_search)
+    public void onClick() {
+        Toast.makeText(ListActivity.this,"ok", Toast.LENGTH_SHORT).show();
+    }
+    
+
 
     @Override
     public void showProgress() {
@@ -99,6 +144,9 @@ public class ListActivity extends AppCompatActivity  implements MyListView{
         getMenuInflater().inflate(R.menu.menu_list, menu);
         return true;
     }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
