@@ -24,8 +24,8 @@ public class DetailActivity extends ActionBarActivity {
     @InjectView(R.id.textViewTitle)
     TextView mTextViewTitle;
 
-    @InjectView(R.id.textViewBody)
-    TextView mTextViewBody;
+    @InjectView(R.id.textViewDeck)
+    TextView mTextViewDeck;
 
     @InjectView(R.id.textViewCompany)
     TextView mTextViewCompany;
@@ -46,6 +46,7 @@ public class DetailActivity extends ActionBarActivity {
     String mName;
     String mCompany;
     String mReleaseDate;
+    String mDeck;
 
 
 
@@ -61,6 +62,7 @@ public class DetailActivity extends ActionBarActivity {
         mName = getIntent().getStringExtra("name");
         mReleaseDate = getIntent().getStringExtra("releaseDate");
         mCompany = getIntent().getStringExtra("company");
+        mDeck =getIntent().getStringExtra("deck");
         //mGa = getIntent().getIntExtra("", 0);
         //ArrayList<Comment> dummyComments = new ArrayList<Comment>();
         //mCommentsAdapter = new CommentsAdapter(this, dummyComments);
@@ -78,16 +80,9 @@ public class DetailActivity extends ActionBarActivity {
         return mGameId;
     }
 
-    /*public void displayComments(List<Comment> comments) {
-        mCommentsAdapter.clear();
-        mCommentsAdapter.addAll(comments);
-        mCommentsAdapter.notifyDataSetInvalidated();
-    }*/
-
     public void displayGame(Game game) {
-
         mTextViewTitle.setText(mName);
-        mTextViewBody.setText(Integer.toString(mGameId));
+        mTextViewDeck.setText(mDeck);
         mTextViewCompany.setText(mCompany);
         mTextViewReleaseDate.setText(mReleaseDate);
     }
@@ -100,13 +95,10 @@ public class DetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
-
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

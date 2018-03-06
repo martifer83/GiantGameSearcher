@@ -7,6 +7,7 @@ public class Game {
     public String name;
     public int id;
     public String company;
-    public String releaseDate;
-
+    public String original_release_date;
+    public String description;
+    public String deck;
 }

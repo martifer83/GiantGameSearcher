@@ -51,11 +51,14 @@ public class GameDetailsAdapter extends ArrayAdapter<Game> {
         @InjectView(R.id.textViewCommentBody)
         protected TextView body;
 
+
+
         public void load(Game game) {
 
             name.setText(game.name);
             email.setText(game.company);
-            body.setText(game.releaseDate);
+            body.setText(game.original_release_date);
+            //deck.setText(game.deck);
         }
     }
 }

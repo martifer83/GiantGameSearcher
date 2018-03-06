@@ -20,9 +20,9 @@
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
         android:textSize="20sp"
-        android:id="@+id/textViewBody"
+        android:id="@+id/textViewDeck"
         android:textColor="@color/color_black"
-        android:text="body"/>
+        android:text="deck"/>
 
     <TextView
         android:layout_width="match_parent"

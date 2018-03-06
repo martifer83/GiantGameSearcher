@@ -103,23 +103,25 @@ public class ListActivity extends AppCompatActivity  implements MyListView{
         Game g = mGamesAdapter.getItem(position);
         int gameId = g.id;
         String company = g.company;
-        String releaseDate = g.releaseDate;
+        String releaseDate = g.original_release_date;
         String name =  g.name;
+        String deck = g.deck;
 
         Intent detailIntent = new Intent(this, DetailActivity.class);
         detailIntent.putExtra("gameId", gameId);
         detailIntent.putExtra("company", company);
         detailIntent.putExtra("releaseDate", releaseDate);
         detailIntent.putExtra("name", name);
+        detailIntent.putExtra("deck", deck);
         startActivity(detailIntent);
     }
 
     @OnClick(R.id.button_search)
     public void onClick() {
         Toast.makeText(ListActivity.this,"ok", Toast.LENGTH_SHORT).show();
+        mListPresenter.loadGames("name:"+etSearch.getText().toString());
+        showProgress();
     }
-    
-
 
     @Override
     public void showProgress() {
